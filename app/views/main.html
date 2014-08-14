@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="col-xs-12 col-md-6">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Attribute</th>
+          <th>Score</th>
+          <th>Modifier</th>
+          <th>Impaired Score</th>
+          <th>Impaired Modifier</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="attr in Char.attributes">
+          <td><strong>{{ attr.name }}</strong></td>
+          <td><input type="number" ng-model="attr.score"></td>
+          <td>{{ attr.getScoreMod() }}</td>
+          <td><input type="number" ng-model="attr.impaired"></td>
+          <td>{{ attr.getImpairedMod() }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="col-xs-12 col-md-6">
+    <form class="form-inline" role="form">
+      <legend>Info</legend>
+
+      <div class="form-group">
+        
+      </div>
+
+    </form>
+  </div>
+</div>
