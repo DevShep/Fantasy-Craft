@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-xs-12 col-md-6">
+  <div class="col-xs-12 col-md-6 col-md-push-6">
     <table class="table">
       <thead>
         <tr>
@@ -22,12 +22,68 @@
     </table>
   </div>
 
-  <div class="col-xs-12 col-md-6">
-    <form class="form-inline" role="form">
+  <div class="col-xs-12 col-md-6 col-md-pull-6">
+    <form class="form" role="form">
       <legend>Info</legend>
 
       <div class="form-group">
-        
+        <label class="sr-only" for="charName">Name</label>
+        <input class="form-control" type="text" id="charName" placeholder="Name" ng-model="Char.info.name">
+      </div>
+
+      <div class="form-group">
+        <label class="sr-only" for="species">Species</label>
+        <input class="form-control" type="text" id="species" placeholder="Species" ng-model="Char.info.species">
+      </div>
+
+      <div class="form-group">
+        <label class="sr-only" for="specialty">Specialty</label>
+        <input class="form-control" type="text" id="specialty" placeholder="Specialty" ng-model="Char.info.specialty">
+      </div>
+
+      <div class="form-group">
+        <label class="sr-only" for="player">Player</label>
+        <input class="form-control" type="text" id="player" placeholder="Player" ng-model="Char.info.player">
+      </div>
+
+      <div class="form-group">
+        <label class="sr-only" for="xp">XP</label>
+        <input class="form-control" type="number" id="xp" placeholder="XP" ng-model="Char.info.xp">
+      </div>
+
+      <div class="form-group">
+        <label class="sr-only" for="nextLevel">Next Level</label>
+        <input class="form-control" type="number" id="nextLevel" placeholder="Next Level" ng-model="Char.info.nextLevel">
+      </div>
+
+      <div class="form-group">
+        <label class="sr-only" for="gender">Gender</label>
+        <input class="form-control" type="text" id="gender" placeholder="Gender" ng-model="Char.info.gender">
+      </div>
+
+      <div class="form-group">
+        <label class="sr-only" for="age">Age</label>
+        <input class="form-control" type="number" id="age" placeholder="Age" ng-model="Char.info.age">
+      </div>
+
+      <div class="form-group">
+        <label class="sr-only" for="height">Height</label>
+        <input class="form-control" type="text" id="height" placeholder="Height" ng-model="Char.info.height">
+      </div>
+
+      <div class="form-group">
+        <label class="sr-only" for="weight">Weight</label>
+        <input class="form-control" type="text" id="weight" placeholder="Weight" ng-model="Char.info.weight">
+      </div>
+
+      <div class="form-group">
+        <label class="sr-only" for="eyes">Eyes</label>
+        <input class="form-control" type="text" id="eyes" placeholder="Eyes" ng-model="Char.info.eyes">
+      </div>
+
+      <div class="form-group">
+        <label class="sr-only" for="hair">Hair</label>
+        <input class="form-control" type="text" id="hair" placeholder="Hair" ng-model="Char.info.hair">
       </div>
 
     </form>
