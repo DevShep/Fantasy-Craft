@@ -70,4 +70,9 @@ describe('Service: Char', function () {
     });
   });
 
+  it('should fetch a particular attribute', function() {
+    expect(Char.getAttr('Tes')).toBe(false);
+    expect(Char.getAttr('Str').name).toBe('Str');
+  });
+
 });

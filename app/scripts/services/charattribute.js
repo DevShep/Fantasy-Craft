@@ -71,6 +71,9 @@ angular.module('fcApp')
       return _returnMod(this.impaired);
     };
 
+    /**
+     * Returns factory API object
+     */
     return {
       Attribute: function(name) {
         return new Attribute(name);
