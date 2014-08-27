@@ -75,4 +75,17 @@ describe('Service: Char', function () {
     expect(Char.getAttr('Str').name).toBe('Str');
   });
 
+  it('should reset the Char into a pristine state', function() {
+    Char.getAttr('Str').score = 15;
+    Char.info.name = 'John';
+
+    expect(Char.getAttr('Str').score).toBe(15);
+    expect(Char.info.name).toBe('John');
+
+    Char.reset();
+
+    expect(Char.getAttr('Str').score).toBeNull();
+    expect(Char.info.name).toBeNull();
+  });
+
 });
