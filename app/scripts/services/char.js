@@ -16,8 +16,8 @@ angular.module('fcApp')
      */
     var _initCharacter = function() {
       /**
-       * Character attributes
-       * @type {Object}
+       * Collection of CharAttributes
+       * @type {Array}
        */
       Character.attributes = [
         CharAttribute.Attribute('Str'),
