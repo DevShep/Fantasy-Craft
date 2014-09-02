@@ -10,10 +10,9 @@
 angular.module('fcApp')
   .factory('CharSkill', function() {
 
-    var Skill = function(name, suggested) {
+    var Skill = function(name, attribute) {
       this.name = name;
-      this.suggested = suggested;
-      this.attribute = suggested;
+      this.attribute = attribute;
       this.ranks = null;
       this.misc = null;
       this.origin = false;
@@ -26,8 +25,8 @@ angular.module('fcApp')
 
     // Public API here
     return {
-      Skill: function(name, suggested) {
-        return new Skill(name, suggested);
+      Skill: function(name, attribute) {
+        return new Skill(name, attribute);
       }
     };
   });

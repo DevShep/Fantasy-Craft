@@ -1,25 +1,27 @@
 <div class="row">
   <div class="col-xs-12 col-md-6 col-md-push-6">
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Attribute</th>
-          <th>Score</th>
-          <th>Modifier</th>
-          <th>Impaired Score</th>
-          <th>Impaired Modifier</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr ng-repeat="attr in Char.attributes">
-          <td><strong>{{ attr.name }}</strong></td>
-          <td><input type="number" ng-model="attr.score"></td>
-          <td>{{ attr.getScoreMod() }}</td>
-          <td><input type="number" ng-model="attr.impaired"></td>
-          <td>{{ attr.getImpairedMod() }}</td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Attribute</th>
+            <th>Score</th>
+            <th>Modifier</th>
+            <th>Impaired Score</th>
+            <th>Impaired Modifier</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="attr in Char.attributes">
+            <td><strong>{{ attr.name }}</strong></td>
+            <td><input type="number" ng-model="attr.score"></td>
+            <td>{{ attr.getScoreMod() }}</td>
+            <td><input type="number" ng-model="attr.impaired"></td>
+            <td>{{ attr.getImpairedMod() }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 
   <div class="col-xs-12 col-md-6 col-md-pull-6">
@@ -87,5 +89,36 @@
       </div>
 
     </form>
+  </div>
+</div>
+
+<div class="row">
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Origin Skill</th>
+          <th>Skill Name</th>
+          <th>Attribute</th>
+          <th>Skill Bonus</th>
+          <th>Ranks</th>
+          <th>Attribute Mod</th>
+          <th>Misc Mod</th>
+          <th>Threat Range</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="skill in Char.skills">
+          <td><input type="checkbox" ng-model="skill.origin"></td>
+          <td>{{ skill.name }}</td>
+          <td><select ng-model="skill.attribute" ng-options="value.name as value.name for value in Char.attributes"></select></td>
+          <td>{{ Char.getSkillBonus(skill.name) }}</td>
+          <td><input type="number" ng-model="skill.ranks"></td>
+          <td>{{ Char.getAttr(skill.attribute).getMod() }}</td>
+          <td><input type="number" ng-model="skill.misc"></td>
+          <td><input type="text" ng-model="skill.threat"></td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>
