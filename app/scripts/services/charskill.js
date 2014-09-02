@@ -8,24 +8,20 @@
  * Factory in the fcApp.
  */
 angular.module('fcApp')
-  .factory('CharSkill', function (Char) {
+  .factory('CharSkill', function () {
     
     var Skill = function(name, suggested) {
       this.name = name;
       this.suggested = suggested;
-      this.attribute = null;
+      this.attribute = suggested;
       this.ranks = null;
       this.misc = null;
       this.origin = false;
       this.threat = null;
     };
 
-    var _getAttrMod = function(attr) {
-      return Char.getAttr(attr).getMod();
-    };
-
     Skill.prototype.getBonus = function() {
-      return this.ranks + this.misc + _getAttrMod(this.attribute);
+      return this.ranks + this.misc;
     };
 
     // Public API here

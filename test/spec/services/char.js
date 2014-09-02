@@ -75,6 +75,26 @@ describe('Service: Char', function () {
     expect(Char.getAttr('Str').name).toBe('Str');
   });
 
+  it('should have skills', function() {
+    expect(Char.skills).toBeDefined();
+  });
+
+  it('should return the skill bonus', function() {
+    Char.getAttr('Str').score = 14;
+    Char.getAttr('Dex').score = 12;
+
+    Char.getSkill('Athletics').ranks = 5;
+    Char.getSkill('Athletics').misc = 1;
+
+    expect(Char.getSkillBonus('Athletics')).toBe(8);
+
+    Char.getAttr('Str').impaired = 10;
+    expect(Char.getSkillBonus('Athletics')).toBe(6);
+
+    Char.getSkill('Athletics').attribute = 'Dex';
+    expect(Char.getSkillBonus('Athletics')).toBe(7);
+  });
+
   it('should reset the Char into a pristine state', function() {
     Char.getAttr('Str').score = 15;
     Char.info.name = 'John';

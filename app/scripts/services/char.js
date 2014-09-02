@@ -8,7 +8,7 @@
  * Service in the fcApp.
  */
 angular.module('fcApp')
-  .factory('Char', function Char(CharAttribute) {
+  .factory('Char', function Char(CharAttribute, CharSkill) {
     var Character = {};
 
     /**
@@ -16,7 +16,7 @@ angular.module('fcApp')
      */
     var _initCharacter = function() {
       /**
-       * Collection of CharAttributes
+       * Collection of CharAttribute objects
        * @type {Array}
        */
       Character.attributes = [
@@ -46,6 +46,33 @@ angular.module('fcApp')
         eyes: null,
         hair: null
       };
+
+      /**
+       * Collection of CharSkill objects
+       * @type {Array}
+       */
+      Character.skills = [
+        CharSkill.Skill('Acrobatics', 'Dex', Character),
+        CharSkill.Skill('Athletics', 'Str', Character),
+        CharSkill.Skill('Blend', 'Cha', Character),
+        CharSkill.Skill('Bluff', 'Cha', Character),
+        CharSkill.Skill('Crafting', 'Int', Character),
+        CharSkill.Skill('Disguise', 'Cha', Character),
+        CharSkill.Skill('Haggle', 'Wis', Character),
+        CharSkill.Skill('Impress', 'Cha', Character),
+        CharSkill.Skill('Intimidate', 'Wis', Character),
+        CharSkill.Skill('Investigate', 'Wis', Character),
+        CharSkill.Skill('Medicine', 'Int', Character),
+        CharSkill.Skill('Notice', 'Wis', Character),
+        CharSkill.Skill('Prestidigitation', 'Dex', Character),
+        CharSkill.Skill('Resolve', 'Con', Character),
+        CharSkill.Skill('Ride', 'Dex', Character),
+        CharSkill.Skill('Search', 'Int', Character),
+        CharSkill.Skill('Sense Motive', 'Wis', Character),
+        CharSkill.Skill('Sneak', 'Dex', Character),
+        CharSkill.Skill('Survival', 'Wis', Character),
+        CharSkill.Skill('Tactics', 'Int', Character)
+      ];
     };
 
     /**
@@ -68,6 +95,43 @@ angular.module('fcApp')
       return retAttr;
     };
 
+    /**
+     * Finds and returns the skill named; false if nothing found
+     * @param  {string} skill
+     * @return {object}
+     */
+    Character.getSkill = function(skill) {
+      var retSkill = false;
+      this.skills.some(function(value) {
+        if (value.name === skill) {
+          retSkill = value;
+          return true;
+        } else {
+          return false;
+        }
+      });
+
+      return retSkill;
+    };
+
+    /**
+     * Returns the named skills total bonus
+     * @param  {string} skill
+     * @return {number}
+     */
+    Character.getSkillBonus = function(skill) {
+      var _skill = this.getSkill(skill);
+
+      if (_skill === false) {
+        return false;
+      }
+
+      return this.getAttr(_skill.attribute).getMod() + _skill.getBonus();
+    };
+
+    /**
+     * Resets Character to default values
+     */
     Character.reset = function() {
       _initCharacter();
     };

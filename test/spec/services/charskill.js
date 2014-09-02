@@ -6,15 +6,11 @@ describe('Service: CharSkill', function () {
   beforeEach(module('fcApp'));
 
   // instantiate service
-  var CharSkill, Char, skill;
+  var CharSkill, skill;
 
-  beforeEach(inject(function (_CharSkill_, _Char_) {
+  beforeEach(inject(function (_CharSkill_) {
     CharSkill = _CharSkill_;
-    Char = _Char_;
     skill = CharSkill.Skill('tes', 'Str');
-
-    Char.getAttr('Str').score = 14;
-    Char.getAttr('Dex').score = 12;
   }));
 
   it('should instantiate an Skill instance', function() {
@@ -25,14 +21,7 @@ describe('Service: CharSkill', function () {
   it('should return the skill bonus', function() {
     skill.ranks = 1;
     skill.misc = 2;
-    skill.attribute = 'Str';
-    expect(skill.getBonus()).toBe(5);
-
-    Char.getAttr('Str').impaired = 10;
     expect(skill.getBonus()).toBe(3);
-
-    skill.attribute = 'Dex';
-    expect(skill.getBonus()).toBe(4);
   });
 
 });
