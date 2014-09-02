@@ -6,8 +6,8 @@ describe('Service: CharAttribute', function () {
   beforeEach(module('fcApp'));
 
   // instantiate service
-  var CharAttribute;
-  var attr;
+  var CharAttribute, attr;
+
   beforeEach(inject(function (_CharAttribute_) {
     CharAttribute = _CharAttribute_;
     attr = CharAttribute.Attribute('tes');
@@ -19,14 +19,17 @@ describe('Service: CharAttribute', function () {
   });
 
   it('should return the relevant modifier', function() {
+    //  Check against score
     attr.score = 12;
     expect(attr.getMod()).toBe(1);
+
+    //  Check against impaired
     attr.impaired = 9;
     expect(attr.getMod()).toBe(-1);
+
+    //  Check against score again after setting impaired to null
     attr.impaired = null;
     expect(attr.getMod()).toBe(1);
-    attr.score = null;
-    expect(attr.getMod()).toBe(0);
   });
 
   it('should get the score modifier', function() {
