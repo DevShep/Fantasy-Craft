@@ -84,7 +84,7 @@ angular.module('fcApp')
       var retAttr = false;
 
       this.attributes.some(function(value) {
-        if(value.name === attr) {
+        if (value.name === attr) {
           retAttr = value;
           return true;
         } else {

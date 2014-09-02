@@ -1,13 +1,13 @@
 'use strict';
 
-describe('Service: Char', function () {
+describe('Service: Char', function() {
 
   // load the service's module
   beforeEach(module('fcApp'));
 
   // instantiate service
   var Char;
-  beforeEach(inject(function (_Char_) {
+  beforeEach(inject(function(_Char_) {
     Char = _Char_;
   }));
 

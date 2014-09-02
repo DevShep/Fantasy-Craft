@@ -1,6 +1,6 @@
 'use strict';
 
-describe('Service: CharAttribute', function () {
+describe('Service: CharAttribute', function() {
 
   // load the service's module
   beforeEach(module('fcApp'));
@@ -8,7 +8,7 @@ describe('Service: CharAttribute', function () {
   // instantiate service
   var CharAttribute, attr;
 
-  beforeEach(inject(function (_CharAttribute_) {
+  beforeEach(inject(function(_CharAttribute_) {
     CharAttribute = _CharAttribute_;
     attr = CharAttribute.Attribute('tes');
   }));

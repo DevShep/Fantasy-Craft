@@ -8,8 +8,8 @@
  * Factory in the fcApp.
  */
 angular.module('fcApp')
-  .factory('CharSkill', function () {
-    
+  .factory('CharSkill', function() {
+
     var Skill = function(name, suggested) {
       this.name = name;
       this.suggested = suggested;
@@ -26,7 +26,7 @@ angular.module('fcApp')
 
     // Public API here
     return {
-      Skill: function (name, suggested) {
+      Skill: function(name, suggested) {
         return new Skill(name, suggested);
       }
     };

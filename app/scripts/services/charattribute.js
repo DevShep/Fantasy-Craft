@@ -10,7 +10,7 @@
 angular.module('fcApp')
   .factory('CharAttribute', function CharAttribute() {
 
-   /**
+    /**
      * Attribute object used to record and reference scores
      * @param {string} name Display name for attribute
      */

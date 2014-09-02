@@ -1,6 +1,6 @@
 'use strict';
 
-describe('Service: CharSkill', function () {
+describe('Service: CharSkill', function() {
 
   // load the service's module
   beforeEach(module('fcApp'));
@@ -8,7 +8,7 @@ describe('Service: CharSkill', function () {
   // instantiate service
   var CharSkill, skill;
 
-  beforeEach(inject(function (_CharSkill_) {
+  beforeEach(inject(function(_CharSkill_) {
     CharSkill = _CharSkill_;
     skill = CharSkill.Skill('tes', 'Str');
   }));
