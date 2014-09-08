@@ -1,1 +1,1 @@
-Test Project for Angular-JS
+Test Project for Angular-JS using Yeoman with angular-generator.
