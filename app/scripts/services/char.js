@@ -52,26 +52,26 @@ angular.module('fcApp')
        * @type {Array}
        */
       Character.skills = [
-        CharSkill.Skill('Acrobatics', 'Dex', Character),
-        CharSkill.Skill('Athletics', 'Str', Character),
-        CharSkill.Skill('Blend', 'Cha', Character),
-        CharSkill.Skill('Bluff', 'Cha', Character),
-        CharSkill.Skill('Crafting', 'Int', Character),
-        CharSkill.Skill('Disguise', 'Cha', Character),
-        CharSkill.Skill('Haggle', 'Wis', Character),
-        CharSkill.Skill('Impress', 'Cha', Character),
-        CharSkill.Skill('Intimidate', 'Wis', Character),
-        CharSkill.Skill('Investigate', 'Wis', Character),
-        CharSkill.Skill('Medicine', 'Int', Character),
-        CharSkill.Skill('Notice', 'Wis', Character),
-        CharSkill.Skill('Prestidigitation', 'Dex', Character),
-        CharSkill.Skill('Resolve', 'Con', Character),
-        CharSkill.Skill('Ride', 'Dex', Character),
-        CharSkill.Skill('Search', 'Int', Character),
-        CharSkill.Skill('Sense Motive', 'Wis', Character),
-        CharSkill.Skill('Sneak', 'Dex', Character),
-        CharSkill.Skill('Survival', 'Wis', Character),
-        CharSkill.Skill('Tactics', 'Int', Character)
+        CharSkill.Skill('Acrobatics', 'Dex'),
+        CharSkill.Skill('Athletics', 'Str'),
+        CharSkill.Skill('Blend', 'Cha'),
+        CharSkill.Skill('Bluff', 'Cha'),
+        CharSkill.Skill('Crafting', 'Int'),
+        CharSkill.Skill('Disguise', 'Cha'),
+        CharSkill.Skill('Haggle', 'Wis'),
+        CharSkill.Skill('Impress', 'Cha'),
+        CharSkill.Skill('Intimidate', 'Wis'),
+        CharSkill.Skill('Investigate', 'Wis'),
+        CharSkill.Skill('Medicine', 'Int'),
+        CharSkill.Skill('Notice', 'Wis'),
+        CharSkill.Skill('Prestidigitation', 'Dex'),
+        CharSkill.Skill('Resolve', 'Con'),
+        CharSkill.Skill('Ride', 'Dex'),
+        CharSkill.Skill('Search', 'Int'),
+        CharSkill.Skill('Sense Motive', 'Wis'),
+        CharSkill.Skill('Sneak', 'Dex'),
+        CharSkill.Skill('Survival', 'Wis'),
+        CharSkill.Skill('Tactics', 'Int')
       ];
     };
 
