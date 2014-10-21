@@ -18,6 +18,10 @@ angular
     'ngTouch',
     'ui.bootstrap'
   ])
+  .constant('_', window._)
+  .run(function ($rootScope) {
+     $rootScope._ = window._;
+  })
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {

@@ -7,33 +7,8 @@
  * # Char
  * Service in the fcApp.
  */
-
-//Polyfill for support
-if (!Array.prototype.findIndex) {
-  Array.prototype.findIndex = function(predicate) {
-    if (this == null) {  // jshint ignore:line
-      throw new TypeError('Array.prototype.find called on null or undefined');
-    }
-    if (typeof predicate !== 'function') {
-      throw new TypeError('predicate must be a function');
-    }
-    var list = Object(this);
-    var length = list.length >>> 0;  // jshint ignore:line
-    var thisArg = arguments[1];
-    var value;
-
-    for (var i = 0; i < length; i++) {
-      value = list[i];
-      if (predicate.call(thisArg, value, i, list)) {
-        return i;
-      }
-    }
-    return -1;
-  };
-}
-
 angular.module('fcApp')
-  .factory('Char', function Char(CharAttribute, CharSkill, CharFocus) {
+  .factory('Char', function Char(_, CharAttribute, CharSkill, CharFocus) {
     var Character = {};
 
     /**
@@ -112,18 +87,9 @@ angular.module('fcApp')
      * @return {object}      CharAttribute
      */
     Character.getAttr = function(attr) {
-      var retAttr = false;
-
-      this.attributes.some(function(value) {
-        if (value.name === attr) {
-          retAttr = value;
-          return true;
-        } else {
-          return false;
-        }
+      return _.find(this.attributes, function(value) {
+        return value.name === attr;
       });
-
-      return retAttr;
     };
 
     /**
@@ -132,17 +98,9 @@ angular.module('fcApp')
      * @return {object}
      */
     Character.getSkill = function(skill) {
-      var retSkill = false;
-      this.skills.some(function(element) {
-        if (element.name === skill) {
-          retSkill = element;
-          return true;
-        } else {
-          return false;
-        }
+      return _.find(this.skills, function(element) {
+        return element.name === skill;
       });
-
-      return retSkill;
     };
 
     /**
@@ -153,7 +111,7 @@ angular.module('fcApp')
     Character.getSkillBonus = function(skill) {
       var _skill = this.getSkill(skill);
 
-      if (_skill === false) {
+      if (_skill === undefined) {
         return false;
       }
 
@@ -166,7 +124,7 @@ angular.module('fcApp')
      * @param {string} type Type of Focus
      */
     Character.addFocus = function(name, type) {
-      this.focuses.findIndex(function(element) {
+      _.findIndex(this.focuses, function(element) {
         if (element.name === name) {
           throw new Error('Focus already exists');
         }
@@ -181,13 +139,8 @@ angular.module('fcApp')
      * @param  {string} name Name of Focus
      */
     Character.removeFocus = function(name) {
-      this.focuses.some(function(element, index, array) {
-        if (element.name === name) {
-          array[index] = null;
-          return true;
-        } else {
-          return false;
-        }
+      _.remove(this.focuses, function(element) {
+        return element.name === name;
       });
     };
 
@@ -197,7 +150,6 @@ angular.module('fcApp')
     Character.reset = function() {
       _initCharacter();
     };
-
 
     _initCharacter();
     return Character;

@@ -11,10 +11,6 @@ describe('Service: Char', function() {
     Char = _Char_;
   }));
 
-  it('should have attributes', function() {
-    expect(Char.attributes).toBeDefined();
-  });
-
   it('should have info', function() {
     expect(Char.info).toBeDefined();
 
@@ -70,13 +66,22 @@ describe('Service: Char', function() {
     });
   });
 
+  it('should have attributes', function() {
+    expect(Char.attributes).toBeDefined();
+  });
+
   it('should fetch a particular attribute', function() {
-    expect(Char.getAttr('Tes')).toBe(false);
+    expect(Char.getAttr('Tes')).toBeUndefined();
     expect(Char.getAttr('Str').name).toBe('Str');
   });
 
   it('should have skills', function() {
     expect(Char.skills).toBeDefined();
+  });
+
+  it('should fetch a particular skill', function() {
+    expect(Char.getSkill('Test')).toBeUndefined();
+    expect(Char.getSkill('Tactics').name).toBe('Tactics');
   });
 
   it('should return the skill bonus', function() {
@@ -101,18 +106,28 @@ describe('Service: Char', function() {
     expect(Char.focuses.length).toBe(2);
   });
 
+  it('should throw an error for duplicate focuses', function() {
+    Char.addFocus('Inscriptions', 'Crafting');
+    var testError = function() {
+      Char.addFocus('Inscriptions', 'Crafting');
+    };
+    expect(testError).toThrow();
+  });
+
   it('should remove focuses', function() {
     Char.addFocus('Metalurgy', 'Crafting');
-    Char.removeFocus('Metalurgy');
-    expect(Char.focuses.length).toBe(1);
+    Char.addFocus('Inscriptions', 'Crafting');
+    Char.addFocus('Horseback', 'Riding');
+    expect(Char.focuses.length).toBe(3);
+
+    Char.removeFocus('Horseback');
+    expect(Char.focuses.length).toBe(2);
   });
 
   it('should reset the Char into a pristine state', function() {
     Char.getAttr('Str').score = 15;
     Char.info.name = 'John';
-
-    expect(Char.getAttr('Str').score).toBe(15);
-    expect(Char.info.name).toBe('John');
+    Char.addFocus('Metalurgy', 'Crafting');
 
     Char.reset();
 
