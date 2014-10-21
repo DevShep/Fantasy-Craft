@@ -7,8 +7,33 @@
  * # Char
  * Service in the fcApp.
  */
+
+//Polyfill for support
+if (!Array.prototype.findIndex) {
+  Array.prototype.findIndex = function(predicate) {
+    if (this == null) {  // jshint ignore:line
+      throw new TypeError('Array.prototype.find called on null or undefined');
+    }
+    if (typeof predicate !== 'function') {
+      throw new TypeError('predicate must be a function');
+    }
+    var list = Object(this);
+    var length = list.length >>> 0;  // jshint ignore:line
+    var thisArg = arguments[1];
+    var value;
+
+    for (var i = 0; i < length; i++) {
+      value = list[i];
+      if (predicate.call(thisArg, value, i, list)) {
+        return i;
+      }
+    }
+    return -1;
+  };
+}
+
 angular.module('fcApp')
-  .factory('Char', function Char(CharAttribute, CharSkill) {
+  .factory('Char', function Char(CharAttribute, CharSkill, CharFocus) {
     var Character = {};
 
     /**
@@ -73,6 +98,12 @@ angular.module('fcApp')
         CharSkill.Skill('Survival', 'Wis'),
         CharSkill.Skill('Tactics', 'Int')
       ];
+
+      /**
+       * Collection of CharFocus objects
+       * @type {Array}
+       */
+      Character.focuses = [];
     };
 
     /**
@@ -102,9 +133,9 @@ angular.module('fcApp')
      */
     Character.getSkill = function(skill) {
       var retSkill = false;
-      this.skills.some(function(value) {
-        if (value.name === skill) {
-          retSkill = value;
+      this.skills.some(function(element) {
+        if (element.name === skill) {
+          retSkill = element;
           return true;
         } else {
           return false;
@@ -127,6 +158,37 @@ angular.module('fcApp')
       }
 
       return this.getAttr(_skill.attribute).getMod() + _skill.getBonus();
+    };
+
+    /**
+     * If a focus with the passed in name does not exist, creates and adds a Focus object to the focuses collection
+     * @param {string} name Name of Focus
+     * @param {string} type Type of Focus
+     */
+    Character.addFocus = function(name, type) {
+      this.focuses.findIndex(function(element) {
+        if (element.name === name) {
+          throw new Error('Focus already exists');
+        }
+      });
+      
+      this.focuses.push(CharFocus.Focus(name, type));
+
+    };
+
+    /**
+     * Removes the Focus object with the passed in name from the focuses collection
+     * @param  {string} name Name of Focus
+     */
+    Character.removeFocus = function(name) {
+      this.focuses.some(function(element, index, array) {
+        if (element.name === name) {
+          array[index] = null;
+          return true;
+        } else {
+          return false;
+        }
+      });
     };
 
     /**

@@ -15,7 +15,7 @@ describe('Service: Char', function() {
     expect(Char.attributes).toBeDefined();
   });
 
-  it(' should have info', function() {
+  it('should have info', function() {
     expect(Char.info).toBeDefined();
 
     describe('Char.info', function() {
@@ -95,6 +95,18 @@ describe('Service: Char', function() {
     expect(Char.getSkillBonus('Athletics')).toBe(7);
   });
 
+  it('should add focuses', function() {
+    Char.addFocus('Metalurgy', 'Crafting');
+    Char.addFocus('Horseback', 'Riding');
+    expect(Char.focuses.length).toBe(2);
+  });
+
+  it('should remove focuses', function() {
+    Char.addFocus('Metalurgy', 'Crafting');
+    Char.removeFocus('Metalurgy');
+    expect(Char.focuses.length).toBe(1);
+  });
+
   it('should reset the Char into a pristine state', function() {
     Char.getAttr('Str').score = 15;
     Char.info.name = 'John';
@@ -106,6 +118,7 @@ describe('Service: Char', function() {
 
     expect(Char.getAttr('Str').score).toBeNull();
     expect(Char.info.name).toBeNull();
+    expect(Char.focuses.length).toBe(0);
   });
 
 });
